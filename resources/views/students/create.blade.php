@@ -66,12 +66,15 @@
 
                         <div class="mb-3">
                           <label for="track_id" class="form-label">Track</label>
-                           <select name="track_id" class="form-select" id="track_id" required>
+                           <select name="track_id" class="form-select" id="track_id" >
                             <option value="">Select Track</option>
                              @foreach ($tracks as $track)
                              <option value="{{ $track->id }}">{{ $track->name }}</option>
                                @endforeach
                              </select>
+                             @error('track_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                          </div>
 
                         <button type="submit" class="btn btn-primary w-100 mt-4">Create</button>

@@ -6,7 +6,7 @@
 
 <h1 class="text-dark fw-bold text-center w-50 mt-5 m-auto"> {{$track->name}}</h1> 
 <table class="table w-75 m-auto table-bordered mt-5 ">
-    <thead>
+    <thead class="text-center table-dark"  >
         <tr>
             <th scope="col">id</th>
             <th scope="col">Name</th>
@@ -26,8 +26,8 @@
                 <td>{{ $track->super_v }}</td>
             
                 <td>
-                    @if($track->image)
-                        <img src="{{ asset('uploads/tracks/' . $track->image) }}" alt="track Image" style="width: 40px; border-radius: 50%; height: auto;">
+                    @if($track->logo)
+                        <img src="{{ asset('uploads/tracks/' . $track->logo) }}" alt="track logo" style="width: 40px; border-radius: 50%; height: auto;">
                     @else
                         No Image
                     @endif

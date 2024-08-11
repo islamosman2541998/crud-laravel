@@ -8,43 +8,37 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="text-center text-info mb-4">Create New Track</h1>
+                    <h1 class="text-center text-info mb-4">Create New Course</h1>
                     
-                    <form method="post" action="{{ route('tracks.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('courses.store') }}" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="mb-3">
                             <label for="exampleInputName1" class="form-label">Name</label>
-                            <input name="name" type="text" class="form-control" id="exampleInputName1" value="{{ old('name') }}" >
+                            <input name="name" type="text" class="form-control" id="exampleInputName1" >
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">location</label>
-                            <input name="location" type="text" class="form-control" id="exampleInputLocation1" value="{{ old('location') }}" >
-                            @error('location')
+                            <label for="exampleInputEmail1" class="form-label">description</label>
+                            <input name="description" type="text" class="form-control" id="exampleInputLocation1" >
+                            @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                            
                         </div>
 
                         <div class="mb-3">
-                            <label for="exampleInputgrade1" class="form-label">super_v</label>
-                            <input name="super_v" type="text" class="form-control" id="exampleInputsuper_v1" value="{{ old('super_v') }}" >
-                            @error('super_v')
+                            <label for="exampleInputgrade1" class="form-label">total_degree</label>
+                            <input name="total_degree" type="number" class="form-control" id="exampleInputsuper_v1" >
+                            @error('total_degree')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="exampleInputImage1" class="form-label">log</label>
-                            <input name="logo" type="file" class="form-control" id="exampleInputLogo1"  >
-                            @error('logo')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                       
 
                       
 

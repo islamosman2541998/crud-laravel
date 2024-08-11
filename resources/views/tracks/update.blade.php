@@ -24,17 +24,26 @@
                         
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $track->name) }}" required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $track->name) }}" >
+                            @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="location" class="form-label">location</label>
-                            <input type="text" class="form-control" id="location" name="location" value="{{ old('location', $track->location) }}" required>
+                            <input type="text" class="form-control" id="location" name="location" value="{{ old('location', $track->location) }}" >
+                            @error('location')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                 
                         <div class="mb-3">
                             <label for="super_v" class="form-label">super_v</label>
-                            <input type="text" class="form-control" id="super_v" name="super_v" value="{{ old('super_v', $track->super_v) }}" required>
+                            <input type="text" class="form-control" id="super_v" name="super_v" value="{{ old('super_v', $track->super_v) }}" >
+                            @error('super_v')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         
                       

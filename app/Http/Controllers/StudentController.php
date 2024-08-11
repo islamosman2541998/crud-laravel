@@ -13,6 +13,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::with('track')->get();
+        $students = Student::paginate(3);
         return view('students.studentsData', compact("students"));
     }
 

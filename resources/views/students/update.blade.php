@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     
-                    @include('inc/errors')
+                    
 
                     <form action="{{ route('students.update', $student->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -24,21 +24,33 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $student->name) }}" >
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $student->email) }}" >
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                 
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
                             <input type="text" class="form-control" id="address" name="address" value="{{ old('address', $student->address) }}" >
+                            @error('address')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         
                         <div class="mb-3">
                             <label for="gender" class="form-label">Gender</label>
                             <input type="text" class="form-control" id="gender" name="gender" value="{{ old('gender', $student->gender) }}" >
+                            @error('gender')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         
                         <div class="mb-3">
@@ -49,16 +61,22 @@
                         <div class="mb-3">
                             <label for="grade" class="form-label">Grade</label>
                             <input type="text" class="form-control" id="grade" name="grade" value="{{ old('grade', $student->grade) }}" >
+                            @error('grade')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="track_id" class="form-label">Track</label>
-                            <select name="track_id" class="form-select" id="track_id" required>
+                            <select name="track_id" class="form-select" id="track_id" >
                                 @foreach ($tracks as $track)
                                     <option value="{{ $track->id }}" {{ $track->id == $student->track_id ? 'selected' : '' }}>
                                         {{ $track->name }}
                                     </option>
                                 @endforeach
                             </select>
+                            @error('track_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Update</button>

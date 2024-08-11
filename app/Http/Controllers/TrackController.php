@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log; 
+
 use App\Models\Track;
 
 class TrackController extends Controller
@@ -11,6 +13,7 @@ class TrackController extends Controller
     public function index()
     {
         $tracks = Track::all();
+        $tracks = Track::paginate(2);
         return view('tracks.tracksData', compact('tracks'));
     }
 
@@ -23,6 +26,14 @@ class TrackController extends Controller
     public function destroy($id)
     {
         $track = Track::findOrFail($id);
+        $filePath = public_path('uploads/tracks/' . $track->logo);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        } else {
+            
+            Log::warning("File not found: " . $filePath);
+        }
+
         $track->delete();
 
         $this->resetTrackIds();
@@ -94,13 +105,26 @@ class TrackController extends Controller
 
     $track = Track::findOrFail($id);
 
-   
+    $name = $track->logo;
     if ($request->hasFile('logo')) {
+          
+        if ($name !== null) {
+            $filePath = public_path('uploads/tracks/' . $name);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            } else {
+                Log::warning("File not found: " . $filePath);
+            }
+        }
+
+
+
+
         $img = $request->file('logo');
         $ext = $img->getClientOriginalExtension();
         $name = uniqid() . '.' . $ext;
         $img->move(public_path('uploads/tracks'), $name);
-        $track->logo = $name;
+       
     }
 
    
@@ -112,7 +136,7 @@ class TrackController extends Controller
     ]);
 
    
-    $track->save();
+   
 
     return redirect()->route('tracks.index');
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TrackController;
+use App\Http\Controllers\CoursesController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,3 +39,22 @@ Route::post('/tracks/store',[TrackController::class,'store'])->name('tracks.stor
 Route::get('/tracks/{id}/edit',[TrackController::class,'edit'])->name('tracks.edit');
 
 Route::put('/tracks/{id}/update',[TrackController::class,'update'])->name('tracks.update');
+
+
+
+
+Route::get('/courses/create',[CoursesController::class,'create'])->name('courses.create');
+Route::get('/courses',[CoursesController::class,'index'])->name('courses.index');
+Route::get('/courses/{id}',[CoursesController::class,'view'])->name('courses.view');
+
+
+Route::delete('/courses/{id}',[CoursesController::class,'destroy'])->name('courses.destroy');
+
+Route::post('/courses/store',[CoursesController::class,'store'])->name('courses.store');
+
+Route::get('/courses/{id}/edit',[CoursesController::class,'edit'])->name('courses.edit');
+
+Route::put('/courses/{id}/update',[CoursesController::class,'update'])->name('courses.update');
+
+
+
