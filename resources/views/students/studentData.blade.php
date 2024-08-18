@@ -15,6 +15,7 @@
             <th scope="col">gender</th>
             <th scope="col">Picture</th>
             <th scope="col">grade</th>
+            <th scope="col">Track</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -35,6 +36,13 @@
                 </td>
                 
                 <td>{{ $student->grade }}</td>
+                <td>
+                @if($student->track)
+                    <a class="text-decoration-none" href="{{ route('tracks.view', $student->track->id) }}">{{ $student->track->name }}</a>
+                @else
+                    No Track
+                @endif
+            </td>
                 <td>
                    <a href="{{route('students.index')}}">
                      <button class="btn btn-warning">Back</button>

@@ -21,6 +21,7 @@
             <th class="text-center" scope="col">Name</th>
             <th class="text-center" scope="col">description</th>
             <th class="text-center" scope="col">total_degree</th>
+            <th class="text-center" scope="col">Track</th>
             
             <th class="text-center" scope="col">Actions</th>
         </tr>
@@ -33,7 +34,13 @@
                 <td>{{ $course->description }}</td>
                 <td>{{ $course->total_degree }}</td>
                 
-              
+                <td>
+                   @if($course->track)
+                    {{ $course->track->name }} 
+                    @else
+                    No Track
+                     @endif
+               </td>
                 
                 <td>
                     <div class="d-flex gap-3 justify-content-center">

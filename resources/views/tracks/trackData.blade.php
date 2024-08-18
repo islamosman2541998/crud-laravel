@@ -45,6 +45,32 @@
     </tbody>
 </table>
 
+<h2 class="text-dark fw-bold text-center mt-5">All Students in {{ $track->name }}</h2>
+
+<table class="table w-75 m-auto table-bordered mt-3">
+    <thead class="text-center table-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Grade</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        @forelse ($track->students as $student)
+            <tr>
+                <td>{{ $student->id }}</td>
+                <td>{{ $student->name }}</td>
+                <td>{{ $student->email }}</td>
+                <td>{{ $student->grade }}</td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="4">No students found in this track.</td>
+            </tr>
+        @endforelse
+    </tbody>
+</table>
 
 @endsection
 

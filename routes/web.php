@@ -1,22 +1,32 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TrackController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\AuthController;
+
+
 
 
 Route::get('/', function () {
     return view('welcome');
+
 });
 
 
+   
+
+
+
+
+
+
+
 Route::get('/students/create',[StudentController::class,'create'])->name('students.create');
-
 Route::get('/students',[StudentController::class,'index'])->name('students.index');
-
 Route::get('/students/{id}',[StudentController::class,'view'])->name('students.view');
-
 Route::delete('/students/{id}',[StudentController::class,'destroy'])->name('students.destroy');
 
 Route::post('/students/store',[StudentController::class,'store'])->name('students.store');
@@ -24,6 +34,9 @@ Route::post('/students/store',[StudentController::class,'store'])->name('student
 Route::get('/students/{id}/edit',[StudentController::class,'edit'])->name('students.edit');
 
 Route::put('/students/{id}/update',[StudentController::class,'update'])->name('students.update');
+
+
+
 
 
 
@@ -46,8 +59,6 @@ Route::put('/tracks/{id}/update',[TrackController::class,'update'])->name('track
 Route::get('/courses/create',[CoursesController::class,'create'])->name('courses.create');
 Route::get('/courses',[CoursesController::class,'index'])->name('courses.index');
 Route::get('/courses/{id}',[CoursesController::class,'view'])->name('courses.view');
-
-
 Route::delete('/courses/{id}',[CoursesController::class,'destroy'])->name('courses.destroy');
 
 Route::post('/courses/store',[CoursesController::class,'store'])->name('courses.store');
@@ -58,3 +69,20 @@ Route::put('/courses/{id}/update',[CoursesController::class,'update'])->name('co
 
 
 
+//register
+Route::get('/register',[AuthController::class,'register'])->name('auth.register');
+Route::post('/handle-register',[AuthController::class,'handleRegister'])->name('auth.handleRegister');
+
+//login
+Route::get('/login',[AuthController::class,'login'])->name('auth.login');
+Route::post('/handle-login',[AuthController::class,'handleLogin'])->name('auth.handleLogin');
+
+//logout
+Route::get ('/logout',[AuthController::class,'logout'])->name('auth.logout');
+
+
+
+ 
+Route::get('/login/github', [AuthController::class, 'redirectToProvider'])->name('auth.github.redirect');
+ 
+Route::get('/login/github/callback',[AuthController::class,'handleProviderCallback'])->name('auth.github.callback');

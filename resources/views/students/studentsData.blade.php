@@ -22,6 +22,7 @@
             <th class="text-center" scope="col">Picture</th>
             <th class="text-center" scope="col">Grade</th>
             <th class="text-center" scope="col">Track</th> 
+            
             <th class="text-center" scope="col">Actions</th>
         </tr>
     </thead>
@@ -48,6 +49,7 @@
                         No Track
                     @endif
                 </td>
+                
                 <td>
                     <div class="d-flex gap-3 justify-content-center">
                         <a href="{{ route('students.view', $student->id) }}"> 
@@ -67,6 +69,16 @@
         @endforeach
     </tbody>
 </table>
+
+
+                    @foreach (Auth::user()->notes as $note)
+
+                    <p>{{ $note->content }}</p>
+                    @endforeach
+
+               
+
+
 <div class="d-flex justify-content-center fixed-bottom ">
   {{ $students->links('pagination::bootstrap-5') }}
 

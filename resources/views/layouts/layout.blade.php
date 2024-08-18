@@ -17,6 +17,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav  mx-auto mb-2  mb-lg-0">
+        
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('students.index') }}">All Students</a>
         </li>
@@ -24,16 +25,31 @@
           <a class="nav-link active" aria-current="page" href="{{ route('tracks.index') }}">All Tracks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('courses.index') }}">All Sourses</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('courses.index') }}">All Courses</a>
         </li>
+       
       
        
      
       </ul>
+      @guest
       <div  >
-        <a class="text-white text-decoration-none " href="">Logout</a>
+        <a class="text-white text-decoration-none " href="{{ route('auth.register') }}">Register</a>
       </div>
+      <div class="ms-3" >
+        <a class="text-white text-decoration-none " href="{{ route('auth.login') }}">Login</a>
+      </div>
+      @endguest
      
+      @auth
+      
+      <div class="ms-3" >
+        <a class="text-white text-decoration-none disabled " href="#">{{Auth::user()->name}}</a>
+      </div>
+      <div class="ms-3" >
+        <a class="text-white text-decoration-none " href="{{ route('auth.logout') }}">Logout</a>
+      </div>
+     @endauth
     </div>
   </div>
 </nav>

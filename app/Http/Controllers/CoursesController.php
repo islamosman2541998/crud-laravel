@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Course;
+use App\Models\Track;
 
 class CoursesController extends Controller
 {
     public function index()
     {
-        
-        $courses = Course::all();
-        $courses = Course::paginate(3);
+        $courses = Course::with('track')->paginate(3);
         return view('courses.coursesData', compact('courses'));
     }
 
@@ -40,10 +39,10 @@ class CoursesController extends Controller
     }
 
     function create()
-    {
-
-       return view('courses.create');
-    }
+{
+    $tracks = Track::all(); 
+    return view('courses.create', compact('tracks'));
+}
 
     function store( Request $request)
      {
@@ -76,10 +75,11 @@ class CoursesController extends Controller
      }
 
      public function edit($id)
-     {
-         $course = Course::findOrFail($id);
-         return view('courses.update', compact('course'));
-     }
+{
+    $course = Course::findOrFail($id);
+    $tracks = Track::all(); 
+    return view('courses.update', compact('course', 'tracks'));
+}
 
      public function update(Request $request, $id)
 {

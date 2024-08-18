@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class note extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'name', 'email', 'gender', 'grade', 'address', 'image','track_id'
+        'content','user_id'
     ];
 
-    public function track()
-    {
-        return $this->belongsTo(Track::class);
+    public function user(){
+
+        return $this->belongsTo(User::class);
     }
+
 }
